@@ -1,0 +1,83 @@
+<div class="row">
+  <div class="col-sm-12">
+    <div class="row">
+      <div class="col-sm-12 title">
+        <h2>Cadastrar novo Produto</h2>
+      </div>
+      <div class="col-sm-12" *ngIf="message" [ngClass]="tipoMsg">
+        <p>{{message}}</p>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-sm-12">
+        <form [formGroup]="form">
+          <div class="form-group">
+            <div class="row">
+              <div class="col">
+                <md-form-field>
+                  <input id="codigo" mdInput placeholder="Código (obrigatório)" formControlName="{{formNames.codigo}}" (focusout)="validateField(formNames.codigo)">
+                  <md-error>{{formErrors[formNames.codigo]}}</md-error>
+                </md-form-field>
+              </div>
+              <div class="col">
+                <md-form-field>
+                  <input id="estoque" type="number" mdInput placeholder="Estoque" formControlName="{{formNames.estoque}}" (focusout)="validateField(formNames.estoque)">
+                </md-form-field>
+              </div>
+            </div>
+          </div>
+          <div class="form-group">
+            <md-form-field>
+              <input id="nome" mdInput placeholder="Nome (obrigatório)" formControlName="{{formNames.nome}}" (focusout)="validateField(formNames.nome)">
+              <md-error>{{formErrors[formNames.nome]}}</md-error>
+            </md-form-field>
+          </div>
+          <div class="form-group">
+            <md-form-field>
+              <input id="descricao" mdInput placeholder="Descrição" formControlName="{{formNames.descricao}}">
+            </md-form-field>
+          </div>
+          <div class="row">
+            <div class="col">
+              <md-form-field>
+                <input id="valorCompra" mdInput placeholder="Valor de compra (obrigatório)" formControlName="{{formNames.valorCompra}}" (focusout)="validateField(formNames.valorCompra)"
+                       currencyMask [options]="{ prefix: 'R$ ', thousands: '.', decimal: ',', allowNegative: false }">
+                <md-error>{{formErrors[formNames.valorCompra]}}</md-error>
+              </md-form-field>
+            </div>
+            <div class="col">
+              <md-form-field>
+                <input id="valorVenda" mdInput placeholder="Valor de venda (obrigatório)" formControlName="{{formNames.valorVenda}}" (focusout)="validateField(formNames.valorVenda)"
+                       currencyMask [options]="{ prefix: 'R$ ', thousands: '.', decimal: ',' }">
+                <md-error>{{formErrors[formNames.valorVenda]}}</md-error>
+              </md-form-field>
+            </div>
+          </div>
+          <div class="row image-url">
+            <div class="col-sm-6">
+              <md-form-field>
+                <input id="urlImagem" mdInput placeholder="*Url da imagem, ex: http://www.img.com/img.jpg" formControlName="{{formNames.urlImagem}}"
+                       (focusout)="validateField(formNames.urlImagem)">
+                <md-error>{{formErrors[formNames.urlImagem]}}</md-error>
+              </md-form-field>
+            </div>
+            <div class="col-sm-6">
+              <img class="img-fluid" src="{{form.get(formNames.urlImagem).value}}">
+            </div>
+          </div>
+        </form>
+        <div class="row">
+          <div class="col-sm-12 btn-actions">
+            <div class="col-sm-6 btn-cancel">
+              <button id="btnCancelar" md-raised-button (click)="closeDialog()">Cancelar</button>
+            </div>
+            <div class="col-sm-6 btn-save">
+              <button id="btnSalvar" md-raised-button color="primary" [disabled]="form.invalid" (click)="create()">Salvar</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+

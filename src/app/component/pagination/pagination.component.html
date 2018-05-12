@@ -1,0 +1,13 @@
+<nav id="{{id}}" aria-label="Page navigation" *ngIf="page">
+  <ul class="pagination justify-content-center">
+    <li class="page-item" *ngIf="!page.first">
+      <a class="page-link link" (click)="previousPage()">Anterior</a>
+    </li>
+    <li class="page-item active" *ngFor="let pageIndex of pagesIndexes" [ngClass]="{'active': pageIndex==page.number+1}">
+      <a class="page-link link" (click)="changePage(pageIndex)">{{pageIndex}}</a>
+    </li>
+    <li class="page-item" *ngIf="!page.last">
+      <a class="page-link link" (click)="nexPage()">Próximo</a>
+    </li>
+  </ul>
+</nav>

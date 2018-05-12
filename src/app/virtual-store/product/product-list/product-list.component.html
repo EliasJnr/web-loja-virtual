@@ -1,0 +1,29 @@
+<div id="productList">
+  <div class="col-sm-12 title">
+    <div class="col-sm-6">
+      <h2>Lista de produtos</h2>
+    </div>
+    <div class="col-sm-6 btn-save">
+      <button id="btnSalvar" md-raised-button color="primary" (click)="newProduct()">Novo Produto</button>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-sm-12">
+      <div class="alert text-center" *ngIf="message | async" [ngClass]="tipoMsg">
+        <p>{{message | async}}</p>
+      </div>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-sm-12">
+      <custom-table [columnNames]="columnNames" [rowNames]="rowNames" [rows]="rows" (edit)="handleEdit($event)"
+                    (remove)="handleRemove($event)" (sort)="handleSort($event)" [imageSize]="100"></custom-table>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-sm-12 text-center">
+      <pagination (action)="handleChoice($event)" [page]="pageData"></pagination>
+    </div>
+  </div>
+</div>
+

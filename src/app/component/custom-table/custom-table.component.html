@@ -1,0 +1,32 @@
+<table class="table table-hover">
+  <thead class="thead-inverse">
+  <tr>
+    <th class="width-index">#</th>
+    <th class="link" *ngFor="let columnName of columnNames; let numberColumn = index" (click)="sortAction(rowNames[numberColumn])">
+      {{ columnName }}<i class="fa fa-fw fa-caret-up link"></i>
+    </th>
+    <th class="width-index"></th>
+    <th class="width-index"></th>
+  </tr>
+  </thead>
+  <tbody>
+  <tr *ngFor="let row of rows; let numberRow = index">
+    <th scope="row">{{ numberRow + 1 }}</th>
+    <td *ngFor="let rowName of rowNames">
+      <span *ngIf="!isImage(row[rowName])">{{ row[rowName] }}</span>
+      <div *ngIf="isImage(row[rowName])">
+        <img class="img-fluid" [ngStyle]="{'max-width': imageSize + 'px'}" src="{{row[rowName]}}" alt="Imagem">
+      </div>
+    </td>
+    <td class="link" (click)="editAction(row)">
+      <i class="fa fa-fw fa-pencil link"></i>
+    </td>
+    <td class="link" (click)="removeAction(row)">
+      <i class="fa fa-fw fa-trash link"></i>
+    </td>
+  </tr>
+  <tr *ngIf="rows.length == 0">
+    <td class="text-center" colspan="99">Sem resultado a ser mostrado</td>
+  </tr>
+  </tbody>
+</table>
